@@ -1,6 +1,6 @@
 # Abstract Vehicle State Machine
 ```
-Package contains a implementaion of State transition for a abstract vehicle.
+Package contains API implementaion of State transition for a abstract vehicle.
 State transitions are performed based on the user roles.
 
 ```

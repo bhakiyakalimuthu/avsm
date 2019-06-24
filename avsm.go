@@ -125,12 +125,3 @@ func (v *Vehicle) StateTransition(toState State, role Role) error {
 
 	return nil
 }
-
-
-func main() {
-	fmt.Println("Running abstract vehicle state machine")
-	v:=Vehicle{}
-	v.SetStateTransitionRules()
-	fmt.Println(v.StateTransition(Bounty,EndUser))
-	fmt.Println(v.CurrentState())
-}
