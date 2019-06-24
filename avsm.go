@@ -118,9 +118,7 @@ func (v *Vehicle) StateTransition(toState State, role Role) error {
 		}
 		return newErrorStruct(fmt.Sprintf("Invalid permission transition from state %s to %s for a role %s", v.state, toState, role), ErrorRolePermissionDenied)
 	}
-
-	
-
+	// set the state
 	v.state = toState
 
 	return nil

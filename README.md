@@ -45,50 +45,53 @@ go get github.com/bhakiyakalimuthu/avsm
 ```
 # Usage
 ```go
-import "github.com/bhakiyakalimuthu/avsm"
+package main 
+
+import (
+	"github.com/bhakiyakalimuthu/avsm"
+	"fmt"
+	)
 
 type T struct {
 	V *avsm.Vehicle
 }
 
 func main() {
+	fmt.Println("testing")
 	t := &T{V: &avsm.Vehicle{}}
 
 	// add initial rule 
-	initVehicle := v.SetStateTransitionRules() // Ready state initiated by default
-
-	if err != nil {
-		// handle
-	}
+	t.V.SetStateTransitionRules() // Ready state initiated by default
+	// if err != nil {
+	// 	// handle
+	// }
 
 	// Happy Journey 
 	// All Happy state transition returns nill
-	v.StateTransition(Riding,Hunter) // State is transited from Ready to Riding
+	t.V.StateTransition("Riding","Hunter") // State is transited from Ready to Riding
 
-	v.StateTransition(Ready,EndUser) // State is transited from Riding to Ready
+	t.V.StateTransition("Ready","EndUser") // State is transited from Riding to Ready
 
-	v.StateTransition(Bounty,Automatic) // State is transited from Ready to Bounty
+	t.V.StateTransition("Bounty","Automatic") // State is transited from Ready to Bounty
 
-	v.StateTransition(Collected,Hunter) // State is transited from Bounty to Collected
+	t.V.StateTransition("Collected","Hunter") // State is transited from Bounty to Collected
 
-	v.StateTransition(Dropped,Hunter) // State is transited from Collected to Dropped
+	t.V.StateTransition("Dropped","Hunter") // State is transited from Collected to Dropped
 
-	v.StateTransition(Ready,Hunter) // State is transited from Dropped to Ready
+	t.V.StateTransition("Ready","Hunter") // State is transited from Dropped to Ready
 
 
 	// Panic scenario 
-	v.StateTransition(Riding,EndUser)
-	errTransitionNotPermitted := v.StateTransition(Collected,Hunter) // transition from state Ready to collected  is not permitted.ErrorTransitionNotPermitted  
+	t.V.StateTransition("Riding","EndUser")
+	errTransitionNotPermitted := t.V.StateTransition("Collected","Hunter") // transition from state Ready to collected  is not permitted.ErrorTransitionNotPermitted  
+	fmt.Println(errTransitionNotPermitted)
+	
+	errRolePermissionDenied := t.V.StateTransition("BatteryLow","EndUser") // Invalid permission transition from state Riding to BatteryLow for a role EndUser.ErrorRolePermissionDenied
+	fmt.Println(errRolePermissionDenied)
 
-	errRolePermissionDenied := v.StateTransition(Bounty,EndUser) // Invalid permission transition from state BatteryLow to Bounty for a role EndUser.ErrorRolePermissionDenied
-
-	// Other options
 	// get the current state
 	state := t.V.CurrentState() // "BatteryLow"
-
-	// set initial state 
-	err = t.V.StateTransition("Unknown") // nil
-
+	fmt.Println(state)
 }
 
 ```
