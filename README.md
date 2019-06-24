@@ -5,7 +5,7 @@ State transitions are performed based on the user roles.
 
 ```
 
-#Technical requirements
+# Technical requirements
 ● If the state transition is not valid, the function should return a descriptive error.
 ● If the state transition is valid, the function should return a nil error
 ● The library needs to have a reasonable performance to be used in a soft real­time API
@@ -13,12 +13,13 @@ solution.
 ● The solution should include the git history.
 ● The solution must be stateless. Assume that any required state will be provided to the library.
 
-#User roles
-- 1. End­users ­ Regular app­users / riders.
-- 2. Hunters ­ End users who have signed up to be chargers of vehicles and are responsible for
-- 	picking up low battery vehicles.
+# User roles
+- End­users ­ Regular app­users / riders.
+- Hunters ­ End users who have signed up to be chargers of vehicles and are responsible for
+- picking up low battery vehicles.
 - 3. Admins ­ Super users who can do everything
-#Valid states
+
+# Valid states
 - Operational statutes
 - 1. Ready ­ The vehicle is operational and can be claimed by an end­user
 - 2. Battery_low ­ The vehicle is low on battery but otherwise operational. The vehicle cannot be
@@ -27,23 +28,24 @@ solution.
 - 4. Riding ­ An end user is currently using this vehicle; it can not be claimed by another user or hunter.
 - 5. Collected ­ A hunter has picked up a vehicle for charging.
 - 6. Dropped ­ A hunter has returned a vehicle after being charged.
-#Not commissioned for service , not claimable by either end­users nor hunters.
+# Not commissioned for service , not claimable by either end­users nor hunters.
 - 7. Service_mode
 - 8. Terminated
 - 9. Unknown
 
-#Note
+# Note
+```
  This is a drafted and working version.
  This can be improved by implementing commandline functionalities.
  avsm pacakge can be divided into multiple modules.
-
-#Installation
+```
+# Installation
 ```
 go get github.com/bhakiyakalimuthu/avsm
 
 ```
-#Usage
-```
+# Usage
+```go
 import "github.com/bhakiyakalimuthu/avsm"
 
 type T struct {
