@@ -41,7 +41,7 @@ func (v *Vehicle)SetStateTransitionRules(){
 
 	v.mu.RLock()
 	defer v.mu.RUnlock()
-	// Entire valid transitions are created as Map contains Map of List
+	// Entire valid transitions are created as State Map contains State Map of List of Roles
 	transitions := map[State]map[State][]Role{
 		Ready: map[State][]Role{
 			Bounty:{Automatic},Riding:{Admin,EndUser,Hunter},Unknown:{Automatic}},
@@ -80,11 +80,13 @@ func (v *Vehicle) StateTransition(toState State, role Role) error {
 	defer v.mu.Unlock()
 
 	// if this is nil we cannot assume any state.Though currently initial state is hardcoded
+	// Below check is not called,will be used for future purpose
 	if v.transitions == nil {
 		return newErrorStruct("no states added to the Vehicle", ErrorVehicleNotInitialized)
 	}
 
 	// if the state is nothing, this is probably the initial state
+	// Below check is not called,will be used for future purpose
 	if v.state == "" {
 		// if the state is not defined, it's invalid
 		if _, ok := v.transitions[toState]; !ok {
@@ -97,6 +99,7 @@ func (v *Vehicle) StateTransition(toState State, role Role) error {
 	}
 
 	// if the destination state was not defined...
+	// Below check is not called,will be used for future purpose
 	if _, ok := v.transitions[toState]; !ok {
 		return newErrorStruct(fmt.Sprintf("state %s has not been registered", toState), ErrorStateUndefined)
 	}
@@ -113,6 +116,7 @@ func (v *Vehicle) StateTransition(toState State, role Role) error {
 			if role == ok {
 				// set the state
 				v.state = toState
+				// Return nil when transitions are valid
 				return nil
 			}
 		}

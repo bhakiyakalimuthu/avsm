@@ -1,13 +1,13 @@
 # Abstract Vehicle State Machine
 ```
-Package contains API implementaion of State transition for a abstract vehicle.
-State transitions are performed based on the user roles.
+GO implementaion of State transition for a abstract vehicle.
+State transitions are performed based on the permission of user roles.
 
 ```
 
 # Technical requirements
-- If the state transition is not valid, the function should return a descriptive error.
-- If the state transition is valid, the function should return a nil error
+- If the state transition is not valid, avsm return a descriptive error.
+- If the state transition is valid, avsm return a nil error
 - The library needs to have a reasonable performance to be used in a soft real­time API solution.
 - The solution should include the git history.
 - The solution must be stateless. Assume that any required state will be provided to the library.
@@ -37,6 +37,7 @@ State transitions are performed based on the user roles.
  This is a drafted and working version.
  This can be improved by implementing commandline functionalities.
  avsm pacakge can be divided into multiple modules.
+ Hardcoded transition map can be modified via logic.
 ```
 # Installation
 ```
