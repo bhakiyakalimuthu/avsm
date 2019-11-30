@@ -124,6 +124,5 @@ func (v *Vehicle) StateTransition(toState State, role Role) error {
 	}
 	// set the state
 	v.state = toState
-
 	return nil
 }
